@@ -28,6 +28,10 @@ app.get("/", (req, res) => {
   res.status(200).send("Backend Server is ready");
 });
 
+app.post("/postRequest", (req, res) => {
+  res.status(201).json({ model: "Civic", year: 2014 });
+});
+
 //---------- CESS (lines 35-135) ---------//
 
 //----------BRITT (lines 136-236)-------//
@@ -44,8 +48,8 @@ function carValue(model, year) {
     .toLowerCase()
     .split("")
     .reduce((sum, char) => sum + (carAlphabet[char] || 0), 0);
-    // Reduces the function | sum/reduce starts at 0 and char is each character from the array, adds it to the sum, + the car alphabet 
-    // and if there is no char found in car alphabet it uses 0.
+  // Reduces the function | sum/reduce starts at 0 and char is each character from the array, adds it to the sum, + the car alphabet
+  // and if there is no char found in car alphabet it uses 0.
 
   return modelValue * 100 + parseInt(year);
   // Final carValue addition modelValue(60) * 100 + Year(2015) = carValue
