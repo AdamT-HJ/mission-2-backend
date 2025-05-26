@@ -1,4 +1,4 @@
-const { convertClaimHistoryToRiskRating } = require('./riskRating');
+const { convertClaimHistoryToRiskRating } = require('../../components/riskRating');
 
 describe("convertClaimHistoryToRiskRating", () => {
   test("returns 2 for input with 'crash' and 'scratch'", () => {
