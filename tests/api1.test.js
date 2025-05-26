@@ -25,7 +25,22 @@ test("RealModelAndYear", () => {
   expect(func({ model: "Toyota", year: 2014 })).toEqual({ carValue: 11614 });
 });
 
-// Test Two
+// Test Two - Not inputting a model
+
+test("Not inputting a model", () => {
+  expect(func({model: , year: 2014})).toEqual({ carValue: InputNotComplete });
+});
+
+// Test Three - Not putting in a year
+
+test("Not putting in a year", () => {
+  expect(func({model: "Toyota", year: })).toEqual({ carValue: InputNotComplete })
+})
+
+
+
+
+
 
 //! Figuring out how I wanted my function
 
