@@ -23,7 +23,7 @@ function convertClaimHistoryToRiskRating(data) {
     // Convert the claim history to lowercase for case-insensitive matching
     const text = data.claim_history.toLowerCase();
     let count = 0;
-  
+                          
     // Search for each keyword in the text
     for (const keyword of keywords) {
         // Create a regular expression to find all occurrences of the keyword
