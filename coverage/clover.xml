@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748239879711" clover="3.2.0">
-  <project timestamp="1748239879711" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1748239910786" clover="3.2.0">
+  <project timestamp="1748239910786" name="All files">
+    <metrics statements="14" coveredstatements="13" conditionals="11" coveredconditionals="10" methods="1" coveredmethods="1" elements="26" coveredelements="24" complexity="0" loc="14" ncloc="14" packages="1" files="1" classes="1"/>
+    <file name="riskRating.js" path="C:\Users\celes\OneDrive\Desktop\2025 Level 5\mission-2\mission-2-backend\components\riskRating.js">
+      <metrics statements="14" coveredstatements="13" conditionals="11" coveredconditionals="10" methods="1" coveredmethods="1"/>
+      <line num="11" count="5" type="stmt"/>
+      <line num="14" count="5" type="cond" truecount="4" falsecount="1"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="19" count="5" type="cond" truecount="4" falsecount="0"/>
+      <line num="20" count="2" type="stmt"/>
+      <line num="24" count="3" type="stmt"/>
+      <line num="25" count="3" type="stmt"/>
+      <line num="28" count="3" type="stmt"/>
+      <line num="30" count="15" type="stmt"/>
+      <line num="32" count="15" type="stmt"/>
+      <line num="34" count="15" type="cond" truecount="2" falsecount="0"/>
+      <line num="35" count="6" type="stmt"/>
+      <line num="40" count="3" type="stmt"/>
+      <line num="44" count="1" type="stmt"/>
+    </file>
   </project>
 </coverage>
