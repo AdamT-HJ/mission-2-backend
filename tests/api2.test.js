@@ -1,5 +1,5 @@
 // Import the function we want to test from the riskRating component
-const { convertClaimHistoryToRiskRating } = require('../../components/riskRating');
+const { convertClaimHistoryToRiskRating } = require('../components/riskRating');
 
 // Describe block groups related tests together
 describe("convertClaimHistoryToRiskRating", () => {
