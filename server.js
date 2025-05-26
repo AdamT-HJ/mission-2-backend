@@ -35,7 +35,10 @@ app.get('/', (req, res) => {
 
 
 //---------- CESS (lines 35-135) ---------//
-
+app.post('/api/risk-rating', (req, res) => {
+    const result = convertClaimHistoryToRiskRating(req.body);
+    res.json(result);
+  });
 
 
 
