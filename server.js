@@ -2,6 +2,7 @@
 const express = require('express')
 require('dotenv').config();
 const cors = require('cors');
+const { convertClaimHistoryToRiskRating } = require('./components/riskRating'); 
 
 // in case we want to make use of these:
 const axios = require('axios');
@@ -39,104 +40,6 @@ app.post('/api/risk-rating', (req, res) => {
     const result = convertClaimHistoryToRiskRating(req.body);
     res.json(result);
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //----------BRITT (lines 136-236)-------//
 
