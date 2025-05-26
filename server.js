@@ -28,32 +28,49 @@ app.get("/", (req, res) => {
   res.status(200).send("Backend Server is ready");
 });
 
-app.post("/postRequest", (req, res) => {
-  res.status(201).json({ model: "Civic", year: 2014 });
-});
-
 //---------- CESS (lines 35-135) ---------//
 
 //----------BRITT (lines 136-236)-------//
-function carValue(model, year) {
-  //Establishing the car value based on the model and year of the vehicle
-  const carAlphabet = Object.fromEntries(
-    Array.from({ length: 26 }, (_, i) => [String.fromCharCode(97 + i), i + 1])
-  ); //Array is created of 26 elements and then maps
-  //_ acts like a placeholder and i is the index
-  // 97 is the ASCII code for 'a'
-  // string.fromCharCode converts a number into its corresponding character
 
-  const modelValue = model
-    .toLowerCase()
-    .split("")
-    .reduce((sum, char) => sum + (carAlphabet[char] || 0), 0);
-  // Reduces the function | sum/reduce starts at 0 and char is each character from the array, adds it to the sum, + the car alphabet
-  // and if there is no char found in car alphabet it uses 0.
+app.post("/carValue", (req, res) => {
+  function carValue(model, year) {
+    //Establishing the car value based on the model and year of the vehicle
+    const carAlphabet = Object.fromEntries(
+      Array.from({ length: 26 }, (_, i) => [String.fromCharCode(97 + i), i + 1])
+    ); //Array is created of 26 elements and then maps
+    //_ acts like a placeholder and i is the index
+    // 97 is the ASCII code for 'a'
+    // string.fromCharCode converts a number into its corresponding character
 
-  return modelValue * 100 + parseInt(year);
-  // Final carValue addition modelValue(60) * 100 + Year(2015) = carValue
-}
+    const modelValue = model
+      .toLowerCase()
+      .split("")
+      .reduce((sum, char) => sum + (carAlphabet[char] || 0), 0);
+    // Reduces the function | sum/reduce starts at 0 and char is each character from the array, adds it to the sum, + the car alphabet
+    // and if there is no char found in car alphabet it uses 0.
+
+    const carValue = modelValue * 100 + parseInt(year);
+
+    const carValueObj = {
+      model: modelValue,
+      vehicleYear: year,
+      value: carValue,
+    };
+
+    return JSON.stringify(carValueObj);
+    // Final carValue addition modelValue(60) * 100 + Year(2015) = carValue
+  }
+
+  const { model, year } = req.body;
+
+  const outcome = carValue(model, year);
+
+  res.json({
+    message: `This is the paramaters`,
+    data: req.body,
+    outcome: outcome,
+  });
+});
 
 //-------ADAM (lines 237-337)------//
 

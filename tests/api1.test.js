@@ -1,4 +1,3 @@
-
 //!Brittany - Convert “Model” and “Year” of a car to a suggested “Car value”. API 1
 
 //! Tests and test cases
@@ -11,35 +10,22 @@ function add(a, b) {
   return a + b;
 }
 
-test('adds 2 + 3 to equal 5', () => {
+test("adds 2 + 3 to equal 5", () => {
   expect(add(2, 3)).toBe(5);
-} ); // Failed because add wasn't defined so we created a function above to pass the test.
+}); // Failed because add wasn't defined so we created a function above to pass the test.
 
 // Writing the test into a function
 function testFunc(a, b) {
   return 2 + 3;
 }
 
+// Test One - Real Model and Year
 
+test("RealModelAndYear", () => {
+  expect(func({ model: "Toyota", year: 2014 })).toEqual({ carValue: 11614 });
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Test Two
 
 //! Figuring out how I wanted my function
 
