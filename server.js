@@ -11,19 +11,15 @@ const multer = require ('multer');
 
 // enable express
 const app = express();
-
-
+const PORT = 3000; //  Hard-coded to 3000 so it always runs there
 
 
 //-------MIDDLEWARE--------//
 app.use(express.json())
-
-
 //cors
 app.use(cors({
     methods: ['GET', 'POST'],
 }));
-
 //multer (if required)
 
 
@@ -36,6 +32,8 @@ app.get('/', (req, res) => {
 
 
 //---------- CESS (lines 35-135) ---------//
+
+// POST endpoint for API 2
 app.post('/api/risk-rating', (req, res) => {
     const result = convertClaimHistoryToRiskRating(req.body);
     res.json(result);
@@ -47,7 +45,10 @@ app.post('/api/risk-rating', (req, res) => {
 
 
 
-
+// ----- START SERVER -------- //
+app.listen(PORT, () => {
+    console.log(`🚀 Server listening on http://localhost:${PORT}`);
+  });
 
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748251517275" clover="3.2.0">
-  <project timestamp="1748251517275" name="All files">
+<coverage generated="1748252605830" clover="3.2.0">
+  <project timestamp="1748252605830" name="All files">
     <metrics statements="14" coveredstatements="13" conditionals="11" coveredconditionals="10" methods="1" coveredmethods="1" elements="26" coveredelements="24" complexity="0" loc="14" ncloc="14" packages="1" files="1" classes="1"/>
     <file name="riskRating.js" path="C:\Users\celes\OneDrive\Desktop\2025 Level 5\mission-2\mission-2-backend\components\riskRating.js">
       <metrics statements="14" coveredstatements="13" conditionals="11" coveredconditionals="10" methods="1" coveredmethods="1"/>
