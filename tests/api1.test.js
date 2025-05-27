@@ -45,6 +45,7 @@ describe("Api1 test functions", () => {
     expect(api1("2020", "2020")).toEqual({ carValue: "" });
   });
 
+  // Test Five - 
   test("Putting model in both inputs", () => {
     expect(api1("Toyota", "Toyota")).toEqual({ carValue: "" });
   });
@@ -53,6 +54,8 @@ describe("Api1 test functions", () => {
     expect(api1("", "")).toEqual({ carValue: "" });
   });
 });
+
+// Testing showed I needed to input console logs incase people put in invalid inputs - added my if code to server.js and check the endpoint was still functioning.
 
 //! Figuring out how I wanted my function
 
