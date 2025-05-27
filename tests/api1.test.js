@@ -1,5 +1,5 @@
 //!Brittany - Convert “Model” and “Year” of a car to a suggested “Car value”. API 1
-const api1 = require('../api1.js')
+const api1 = require("../api1.js");
 //! Tests and test cases
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -9,7 +9,6 @@ const api1 = require('../api1.js')
 function add(a, b) {
   return a + b;
 }
-
 
 test("adds 2 + 3 to equal 5", () => {
   expect(add(2, 3)).toBe(5);
@@ -22,28 +21,38 @@ function testFunc(a, b) {
 
 // Describe wrapper
 describe("Api1 test functions", () => {
-// Test One - Real Model and Year
+  // Test One - Real Model and Year
 
-test("RealModelAndYear", () => {
-  expect(api1({ model: "Toyota", year: 2014 })).toEqual({ carValue: 11614 });
+  test("RealModelAndYear", () => {
+    expect(api1("Toyota", 2014)).toEqual({ carValue: 11614 });
+  });
+
+  // Test Two - Not inputting a model
+
+  test("Not inputting a model", () => {
+    expect(api1("", 2014)).toEqual({ carValue: "" });
+  });
+
+  // Test Three - Not putting in a year
+
+  test("Not putting in a year", () => {
+    expect(api1("Toyota", "")).toEqual({ carValue: "" });
+  });
+
+  // Test Four - Not putting in a year
+
+  test("Putting year in both inputs", () => {
+    expect(api1("2020", "2020")).toEqual({ carValue: "" });
+  });
+
+  test("Putting model in both inputs", () => {
+    expect(api1("Toyota", "Toyota")).toEqual({ carValue: "" });
+  });
+
+  test("Putting nothing in both inputs", () => {
+    expect(api1("", "")).toEqual({ carValue: "" });
+  });
 });
-
-// Test Two - Not inputting a model
-
-test("Not inputting a model", () => {
-  expect(api1({model:"" , year: 2014})).toEqual({ carValue: InputNotComplete });
-});
-
-// Test Three - Not putting in a year
-
-test("Not putting in a year", () => {
-  expect(api1({model: "Toyota", year:""})).toEqual({ carValue: InputNotComplete });
-})
-
-
-
-});
-
 
 //! Figuring out how I wanted my function
 

@@ -1,8 +1,15 @@
  
  
  function api1(model, year) {
-    console.log(typeOf model)
-     console.log(model)                   //Establishing the car value based on the model and year of the vehicle
+    console.log(typeof model)
+     console.log(model)          
+     if (typeof model !== "string") {
+        console.log("Model is undefined")
+     };
+     if (typeof year !== "number") {
+        console.log("Year is undefined")
+     };
+    //Establishing the car value based on the model and year of the vehicle
     const carAlphabet = Object.fromEntries(
       Array.from({ length: 26 }, (_, i) => [String.fromCharCode(97 + i), i + 1])
     ); //Array is created of 26 elements and then maps
@@ -28,5 +35,7 @@
     return JSON.stringify(carValueObj);
     // Final carValue addition modelValue(60) * 100 + Year(2015) = carValue
 };
+
+api1("toyota", 2014)
 
 module.exports = api1;
