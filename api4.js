@@ -32,7 +32,7 @@ const api4 = (age, experience) => {
         // age cut-off 115, experience cut-off 99 (based on youngest poss. starting age of 16)
         if (age >=115 || experience >=99){
            discountPercentage.success = false;
-            discountPercentage.message = "Error: Input values, please check input age and experience values are numbers. Please enter: whole numbers rounded down, no negative numbers. If you are aged 25 and half - enter age 25. If you have 4.5 years experience - enter 4";
+            discountPercentage.message = "Error: Input values, please check input age and experience values. The entered values of age or experience appears to be greater than expected or possible.";
             return discountPercentage 
         }
 

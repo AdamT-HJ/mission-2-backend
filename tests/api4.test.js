@@ -94,7 +94,7 @@ describe("api4 function", () => {
        expect(api4("f%ve",-10)).toStrictEqual({
         success: false,
         discount: 0,
-        message: "Error: Input values, please check input age and experience values are numbers. Please enter: whole numbers rounded down, no negative numbers. If you are aged 25 and half - enter age 25. If you have 4.5 years experience - enter 4"
+        message: "Error: Input values, please check input age and experience values. The entered values of age or experience appears to be greater than expected or possible."
         }) 
     });   
 })
