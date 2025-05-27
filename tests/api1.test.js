@@ -1,5 +1,5 @@
 //!Brittany - Convert “Model” and “Year” of a car to a suggested “Car value”. API 1
-
+const api1 = require('../api1.js')
 //! Tests and test cases
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -10,6 +10,7 @@ function add(a, b) {
   return a + b;
 }
 
+
 test("adds 2 + 3 to equal 5", () => {
   expect(add(2, 3)).toBe(5);
 }); // Failed because add wasn't defined so we created a function above to pass the test.
@@ -19,27 +20,29 @@ function testFunc(a, b) {
   return 2 + 3;
 }
 
+// Describe wrapper
+describe("Api1 test functions", () => {
 // Test One - Real Model and Year
 
 test("RealModelAndYear", () => {
-  expect(func({ model: "Toyota", year: 2014 })).toEqual({ carValue: 11614 });
+  expect(api1({ model: "Toyota", year: 2014 })).toEqual({ carValue: 11614 });
 });
 
 // Test Two - Not inputting a model
 
 test("Not inputting a model", () => {
-  expect(func({model: , year: 2014})).toEqual({ carValue: InputNotComplete });
+  expect(api1({model:"" , year: 2014})).toEqual({ carValue: InputNotComplete });
 });
 
 // Test Three - Not putting in a year
 
 test("Not putting in a year", () => {
-  expect(func({model: "Toyota", year: })).toEqual({ carValue: InputNotComplete })
+  expect(api1({model: "Toyota", year:""})).toEqual({ carValue: InputNotComplete });
 })
 
 
 
-
+});
 
 
 //! Figuring out how I wanted my function
