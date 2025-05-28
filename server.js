@@ -1,4 +1,3 @@
-
 const express = require('express')
 require('dotenv').config();
 const cors = require('cors');
@@ -35,9 +34,39 @@ app.get('/', (req, res) => {
 
 // POST endpoint for API 2
 app.post('/api/risk-rating', (req, res) => {
-    const result = convertClaimHistoryToRiskRating(req.body);
-    res.json(result);
-  });
+    try {
+        // Ensure request has a body
+        if (!req.body) {
+            return res.status(400).json({ 
+                error: "Request body is required" 
+            });
+        }
+
+        const result = convertClaimHistoryToRiskRating(req.body);
+        
+        // If there's an error in the result (invalid input)
+        if (result.error) {
+            return res.status(400).json(result); // 400 Bad Request
+        }
+        
+        // Success response with 200 OK
+        res.status(200).json(result);
+    } catch (error) {
+        // Log the error for debugging
+        console.error('Error processing request:', error);
+        
+        // Return 500 for unexpected errors
+        res.status(500).json({ 
+            error: "An unexpected error occurred",
+            // Only show error details in development
+            ...(process.env.NODE_ENV === 'development' && { 
+                details: error.message 
+            })
+        });
+    }
+});
+
+//---------- CESS (lines 35-135) ---------//
 
 //----------BRITT (lines 136-236)-------//
 
@@ -144,105 +173,6 @@ app.listen(PORT, () => {
 
 
 //-------ADAM (lines 237-337)------//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //-----PORT----//
 app.listen(process.env.PORT, () => {
