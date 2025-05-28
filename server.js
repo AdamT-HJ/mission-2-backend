@@ -33,7 +33,15 @@ app.get("/", (req, res) => {
 //----------BRITT (lines 136-236)-------//
 
 app.post("/carValue", (req, res) => {
+  const { model, year } = req.body;
+
   function carValue(model, year) {
+    if (typeof model !== "string") {
+      console.log("Model is undefined");
+    }
+    if (typeof year !== "number") {
+      console.log("Year is undefined");
+    }
     //Establishing the car value based on the model and year of the vehicle
     const carAlphabet = Object.fromEntries(
       Array.from({ length: 26 }, (_, i) => [String.fromCharCode(97 + i), i + 1])
@@ -60,8 +68,6 @@ app.post("/carValue", (req, res) => {
     return JSON.stringify(carValueObj);
     // Final carValue addition modelValue(60) * 100 + Year(2015) = carValue
   }
-
-  const { model, year } = req.body;
 
   const outcome = carValue(model, year);
 
