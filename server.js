@@ -4,9 +4,8 @@ const cors = require('cors');
 const { convertClaimHistoryToRiskRating } = require('./components/riskRating'); 
 
 // in case we want to make use of these:
-const axios = require('axios');
-const multer = require ('multer');
-
+const axios = require("axios");
+const multer = require("multer");
 
 // enable express
 const app = express();
@@ -21,14 +20,12 @@ app.use(cors({
 }));
 //multer (if required)
 
-
 //-----ENDPOINTS--------//
 
 //test
-app.get('/', (req, res) => {
-    res.status(200).send('Backend Server is ready');
-})
-
+app.get("/", (req, res) => {
+  res.status(200).send("Backend Server is ready");
+});
 
 //---------- CESS (lines 35-135) ---------//
 
@@ -175,9 +172,10 @@ app.listen(PORT, () => {
 //-------ADAM (lines 237-337)------//
 
 //-----PORT----//
-app.listen(process.env.PORT, () => {
+app
+  .listen(process.env.PORT, () => {
     console.log(`Server listening at http://localhost:${process.env.PORT}`);
-})
-    .on('error', (error) => {
-        console.log("OH NO, SERVER ERROR!!! 🔥🔥👨‍🚒🚒🧯🔥🔥", error);
-    });
+  })
+  .on("error", (error) => {
+    console.log("OH NO, SERVER ERROR!!! 🔥🔥👨‍🚒🚒🧯🔥🔥", error);
+  });
