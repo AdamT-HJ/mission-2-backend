@@ -1,6 +1,7 @@
 
 
 # Node.js specific ignores
+coverage/
 node_modules/
 npm-debug.log*
 yarn-debug.log*

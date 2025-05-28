@@ -1,23 +1,39 @@
 
 //API4 Function 
-// as part of refactoring rename function to understand it's purpose better
+
+//Helper Function
+const isValidPositiveWholeNumber = input => {
+       return typeof input === "number" && !isNaN(input) && input>=0 && Number.isInteger(input)
+    };
+
+
+//Refactored
 const api4 = (age, experience) => {
     let discountPercentage = {
         success: true,
         discount: 0,
         message: ""
         };
+
+    // Error messages
+    const inputNotValidNumberError = "Error: Input values, please check input age and experience values are numbers. Please enter: whole numbers rounded down, no negative numbers. If you are aged 25 and half - enter age 25. If you have 4.5 years experience - enter 4"
+
+    const impossibleAgeExperienceError = "Error: Please check age & experience values, not possible to have entered years of road experience at entered age"
+
+    const aboveBoundaryLimitsError = "Error: Input values, please check input age and experience values. The entered values of age or experience appears to be greater than expected or possible."
+
+
     try{
-        //input validation 'age' & 'experience' should be type of number, also NAN, and not a negative number.
-        if (typeof age !== 'number' || isNaN(age) || age <0){
+        //input validation 
+        if (!isValidPositiveWholeNumber(age)){
             discountPercentage.success = false;
-            discountPercentage.message = "Error: Input values, please check input age and experience values are numbers. Please enter: whole numbers rounded down, no negative numbers. If you are aged 25 and half - enter age 25. If you have 4.5 years experience - enter 4";
+            discountPercentage.message = inputNotValidNumberError;
             return discountPercentage;
         }
 
-        if (typeof experience !== 'number' || isNaN(experience) || experience <0){
+        if (!isValidPositiveWholeNumber(experience)){
             discountPercentage.success = false;
-            discountPercentage.message = "Error: Input values, please check input age and experience values are numbers. Please enter: whole numbers rounded down, no negative numbers. If you are aged 25 and half - enter age 25. If you have 4.5 years experience - enter 4";
+            discountPercentage.message = inputNotValidNumberError;
             return discountPercentage;
         }
 
@@ -25,14 +41,14 @@ const api4 = (age, experience) => {
         if ((age <=20 && experience >=5) ||
             (age <=25 && experience >=10) ){
             discountPercentage.success = false;
-            discountPercentage.message = "Error: Please check age & experience values, not possible to have entered years of road experience at entered age";
+            discountPercentage.message = impossibleAgeExperienceError;
             return discountPercentage
         }  
 
         // age cut-off 115, experience cut-off 99 (based on youngest poss. starting age of 16)
         if (age >=115 || experience >=99){
            discountPercentage.success = false;
-            discountPercentage.message = "Error: Input values, please check input age and experience values. The entered values of age or experience appears to be greater than expected or possible.";
+            discountPercentage.message = aboveBoundaryLimitsError;
             return discountPercentage 
         }
 
@@ -64,3 +80,75 @@ const api4 = (age, experience) => {
 };
 
 module.exports = api4;
+
+
+
+
+
+
+
+
+//original
+// const api4 = (age, experience) => {
+//     let discountPercentage = {
+//         success: true,
+//         discount: 0,
+//         message: ""
+//         };
+//     try{
+        
+//         if (typeof age !== 'number' || isNaN(age) || age <0){
+//             discountPercentage.success = false;
+//             discountPercentage.message = "Error: Input values, please check input age and experience values are numbers. Please enter: whole numbers rounded down, no negative numbers. If you are aged 25 and half - enter age 25. If you have 4.5 years experience - enter 4";
+//             return discountPercentage;
+//         }
+
+//         if (typeof experience !== 'number' || isNaN(experience) || experience <0){
+//             discountPercentage.success = false;
+//             discountPercentage.message = "Error: Input values, please check input age and experience values are numbers. Please enter: whole numbers rounded down, no negative numbers. If you are aged 25 and half - enter age 25. If you have 4.5 years experience - enter 4";
+//             return discountPercentage;
+//         }
+
+        
+//         if ((age <=20 && experience >=5) ||
+//             (age <=25 && experience >=10) ){
+//             discountPercentage.success = false;
+//             discountPercentage.message = "Error: Please check age & experience values, not possible to have entered years of road experience at entered age";
+//             return discountPercentage
+//         }  
+
+      
+//         if (age >=115 || experience >=99){
+//            discountPercentage.success = false;
+//             discountPercentage.message = "Error: Input values, please check input age and experience values. The entered values of age or experience appears to be greater than expected or possible.";
+//             return discountPercentage 
+//         }
+
+    
+//         if (age >= 25) {
+//             discountPercentage.discount += 5;    
+//         }
+//         if (age >=40) {
+//             discountPercentage.discount +=5;
+//         }
+//         if (experience >= 5) {
+//             discountPercentage.discount +=5;
+//         }
+//         if (experience >= 10) {
+//             discountPercentage.discount +=5
+//         }
+//         return discountPercentage
+//     }
+    
+  
+//     catch (error) {
+//         console.error("An unexpected error occurred oh no!! 🦧💥💥", error);
+//         discountPercentage.success = false;
+//         discountPercentage.discount = 0;
+//         discountPercentage.message =`"An unexpected error occurred!!", ${error}`;
+//         return discountPercentage
+//     }
+
+// };
+
+// module.exports = api4;
