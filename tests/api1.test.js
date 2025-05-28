@@ -45,7 +45,7 @@ describe("Api1 test functions", () => {
     expect(api1("2020", "2020")).toEqual({ carValue: "" });
   });
 
-  // Test Five - 
+  // Test Five -
   test("Putting model in both inputs", () => {
     expect(api1("Toyota", "Toyota")).toEqual({ carValue: "" });
   });

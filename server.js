@@ -33,7 +33,6 @@ app.get("/", (req, res) => {
 //----------BRITT (lines 136-236)-------//
 
 app.post("/carValue", (req, res) => {
-
   const { model, year } = req.body;
 
   function carValue(model, year) {
