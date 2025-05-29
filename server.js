@@ -6,6 +6,8 @@ const cors = require("cors");
 const axios = require("axios");
 const multer = require("multer");
 
+const { convertClaimHistoryToRiskRating } = require("./components/riskRating");
+
 // enable express
 const app = express();
 
@@ -116,8 +118,7 @@ app.post("/carValue", (req, res) => {
 //-------ADAM (lines 237-337)------//
 
 //-----PORT----//
-app
-  .listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Server listening at http://localhost:${process.env.PORT}`);
   })
   .on("error", (error) => {
