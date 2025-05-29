@@ -1,5 +1,5 @@
 //!Brittany - Convert “Model” and “Year” of a car to a suggested “Car value”. API 1
-
+const api1 = require("../api1.js");
 //! Tests and test cases
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -19,28 +19,43 @@ function testFunc(a, b) {
   return 2 + 3;
 }
 
-// Test One - Real Model and Year
+// Describe wrapper
+describe("Api1 test functions", () => {
+  // Test One - Real Model and Year
 
-test("RealModelAndYear", () => {
-  expect(func({ model: "Toyota", year: 2014 })).toEqual({ carValue: 11614 });
+  test("RealModelAndYear", () => {
+    expect(api1("Toyota", 2014)).toEqual({ carValue: 11614 });
+  });
+
+  // Test Two - Not inputting a model
+
+  test("Not inputting a model", () => {
+    expect(api1("", 2014)).toEqual({ carValue: "" });
+  });
+
+  // Test Three - Not putting in a year
+
+  test("Not putting in a year", () => {
+    expect(api1("Toyota", "")).toEqual({ carValue: "" });
+  });
+
+  // Test Four - Not putting in a year
+
+  test("Putting year in both inputs", () => {
+    expect(api1("2020", "2020")).toEqual({ carValue: "" });
+  });
+
+  // Test Five -
+  test("Putting model in both inputs", () => {
+    expect(api1("Toyota", "Toyota")).toEqual({ carValue: "" });
+  });
+
+  test("Putting nothing in both inputs", () => {
+    expect(api1("", "")).toEqual({ carValue: "" });
+  });
 });
 
-// Test Two - Not inputting a model
-
-test("Not inputting a model", () => {
-  expect(func({model: , year: 2014})).toEqual({ carValue: InputNotComplete });
-});
-
-// Test Three - Not putting in a year
-
-test("Not putting in a year", () => {
-  expect(func({model: "Toyota", year: })).toEqual({ carValue: InputNotComplete })
-})
-
-
-
-
-
+// Testing showed I needed to input console logs incase people put in invalid inputs - added my if code to server.js and check the endpoint was still functioning.
 
 //! Figuring out how I wanted my function
 

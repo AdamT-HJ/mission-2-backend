@@ -1,7 +1,7 @@
 {
   "name": "code",
   "version": "1.0.0",
-  "description": "",
+  "description": "back-end for MR lvl5 Mission 2, 05.2025",
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll --verbose --coverage",
@@ -22,5 +22,16 @@
     "jest": "^29.7.0",
     "multer": "^2.0.0",
     "nodemon": "^3.1.10"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamT-HJ/mission-2-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AdamT-HJ/mission-2-backend/issues"
+  },
+  "homepage": "https://github.com/AdamT-HJ/mission-2-backend#readme"
 }

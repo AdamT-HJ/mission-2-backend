@@ -1,11 +1,13 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
+const { convertClaimHistoryToRiskRating } = require("./components/riskRating");
 const api4 = require("./api4.js")
 
 // in case we want to make use of these:
 const axios = require("axios");
 const multer = require("multer");
+
 
 // enable express
 const app = express();
@@ -30,11 +32,54 @@ app.get("/", (req, res) => {
 });
 
 //---------- CESS (lines 35-135) ---------//
+// POST endpoint for API 2
+app.post("/api/risk-rating", (req, res) => {
+  try {
+    // Ensure request has a body
+    if (!req.body) {
+      return res.status(400).json({
+        error: "Request body is required",
+      });
+    }
+
+    const result = convertClaimHistoryToRiskRating(req.body);
+
+    // If there's an error in the result (invalid input)
+    if (result.error) {
+      return res.status(400).json(result); // 400 Bad Request
+    }
+
+    // Success response with 200 OK
+    res.status(200).json(result);
+  } catch (error) {
+    // Log the error for debugging
+    console.error("Error processing request:", error);
+
+    // Return 500 for unexpected errors
+    res.status(500).json({
+      error: "An unexpected error occurred",
+      // Only show error details in development
+      ...(process.env.NODE_ENV === "development" && {
+        details: error.message,
+      }),
+    });
+  }
+});
+
+//---------- CESS (lines 35-135) ---------//
 
 //----------BRITT (lines 136-236)-------//
 
 app.post("/carValue", (req, res) => {
+  const { model, year } = req.body;
+
   function carValue(model, year) {
+    if (typeof model !== "string") {
+      console.log("Model is undefined");
+    }
+    if (typeof year !== "number") {
+      console.log("Year is undefined");
+    }
     //Establishing the car value based on the model and year of the vehicle
     const carAlphabet = Object.fromEntries(
       Array.from({ length: 26 }, (_, i) => [String.fromCharCode(97 + i), i + 1])
@@ -62,8 +107,6 @@ app.post("/carValue", (req, res) => {
     // Final carValue addition modelValue(60) * 100 + Year(2015) = carValue
   }
 
-  const { model, year } = req.body;
-
   const outcome = carValue(model, year);
 
   res.json({
@@ -72,6 +115,36 @@ app.post("/carValue", (req, res) => {
     outcome: outcome,
   });
 });
+
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+}).on('error', (error) => {
+  console.error('Server failed to start:', error);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -236,54 +309,5 @@ app.post("/carValue", (req, res) => {
 
 
 //-------ADAM (lines 237-337)------//
-app.post("/discount-calculator", (req, res) => {
-  console.log("post request received", req.body)
-
-  if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body) || req.body === null) {
-    return res.status(400).json({
-      status: "error",
-      message: "Invalid req. body. Object expected for discount calculation format: {age: X, experience: Y} "
-    })
-  }
-
-  const {age, experience} = req.body;
-
-  const discountCalculated = api4(age, experience);
-
-  if(discountCalculated.success) {
-  res.status(200).json({discountCalculated});
-  } 
-  else {
-    res.status(400).json(discountCalculated);
-  }
-
-});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//-----PORT----//
-app
-  .listen(process.env.PORT, () => {
-    console.log(`Server listening at http://localhost:${process.env.PORT}`);
-  })
-  .on("error", (error) => {
-    console.log("OH NO, SERVER ERROR!!! 🔥🔥👨‍🚒🚒🧯🔥🔥", error);
-  });
