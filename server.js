@@ -7,7 +7,6 @@ const { convertClaimHistoryToRiskRating } = require("./components/riskRating");
 const axios = require("axios");
 const multer = require("multer");
 
-const { convertClaimHistoryToRiskRating } = require("./components/riskRating");
 
 // enable express
 const app = express();
