@@ -1,7 +1,7 @@
 // Import the function we want to test from the riskRating component
 const { convertClaimHistoryToRiskRating } = require('../components/riskRating');
 
-// Describe block groups related tests together
+
 describe("convertClaimHistoryToRiskRating", () => {
   // Test case 1: Check if the function correctly counts multiple keywords
   test("returns 2 for input with 'crash' and 'scratch'", () => {

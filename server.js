@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
+const { convertClaimHistoryToRiskRating } = require("./components/riskRating");
 
 // in case we want to make use of these:
 const axios = require("axios");
@@ -115,12 +116,35 @@ app.post("/carValue", (req, res) => {
   });
 });
 
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+}).on('error', (error) => {
+  console.error('Server failed to start:', error);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //-------ADAM (lines 237-337)------//
 
-//-----PORT----//
-app.listen(process.env.PORT, () => {
-    console.log(`Server listening at http://localhost:${process.env.PORT}`);
-  })
-  .on("error", (error) => {
-    console.log("OH NO, SERVER ERROR!!! 🔥🔥👨‍🚒🚒🧯🔥🔥", error);
-  });
