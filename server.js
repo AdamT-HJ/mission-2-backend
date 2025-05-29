@@ -117,6 +117,40 @@ app.post("/carValue", (req, res) => {
 });
 
 
+
+
+
+
+
+//-------ADAM (lines 237-337)------//
+app.post("/discount-calculator", (req, res) => {
+  console.log("post request received", req.body)
+
+  if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body) || req.body === null) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid req. body. Object expected for discount calculation format: {age: X, experience: Y} "
+    })
+  }
+
+  const {age, experience} = req.body;
+
+  const discountCalculated = api4(age, experience);
+
+  if(discountCalculated.success) {
+  res.status(200).json({discountCalculated});
+  } 
+  else {
+    res.status(400).json(discountCalculated);
+  }
+
+});
+
+
+
+
+
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -308,6 +342,6 @@ app.listen(PORT, () => {
 
 
 
-//-------ADAM (lines 237-337)------//
+
 
 
