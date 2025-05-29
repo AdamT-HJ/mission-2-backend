@@ -68,6 +68,9 @@ app.post('/api/risk-rating', (req, res) => {
 
 //----------BRITT (lines 136-236)-------//
 
+app.post("/carValue", (req, res) => {
+  const { model, year } = req.body;
+ 
   function carValue(model, year) {
     if (typeof model !== "string") {
       console.log("Model is undefined");
@@ -82,34 +85,34 @@ app.post('/api/risk-rating', (req, res) => {
     //_ acts like a placeholder and i is the index
     // 97 is the ASCII code for 'a'
     // string.fromCharCode converts a number into its corresponding character
-
+ 
     const modelValue = model
       .toLowerCase()
       .split("")
       .reduce((sum, char) => sum + (carAlphabet[char] || 0), 0);
     // Reduces the function | sum/reduce starts at 0 and char is each character from the array, adds it to the sum, + the car alphabet
     // and if there is no char found in car alphabet it uses 0.
-
+ 
     const carValue = modelValue * 100 + parseInt(year);
-
+ 
     const carValueObj = {
       model: modelValue,
       vehicleYear: year,
       value: carValue,
     };
-
+ 
     return JSON.stringify(carValueObj);
     // Final carValue addition modelValue(60) * 100 + Year(2015) = carValue
   }
-
+ 
   const outcome = carValue(model, year);
-
+ 
   res.json({
     message: `This is the paramaters`,
     data: req.body,
     outcome: outcome,
   });
-
+});
 
 
 
